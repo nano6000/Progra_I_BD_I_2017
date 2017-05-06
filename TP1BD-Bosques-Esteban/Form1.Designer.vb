@@ -23,10 +23,20 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.dgvRestaurantes = New System.Windows.Forms.DataGridView()
+        Me.btnRefreshRes = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.AdmRes = New System.Windows.Forms.TabPage()
+        Me.btnModRes = New System.Windows.Forms.Button()
+        Me.btnAgregarRes = New System.Windows.Forms.Button()
+        Me.chkbxBuenoParaRes = New System.Windows.Forms.CheckedListBox()
+        Me.lblBuenoParaRes = New System.Windows.Forms.Label()
+        Me.chkbxTipoComidaRes = New System.Windows.Forms.CheckedListBox()
+        Me.lblTipoComidaRes = New System.Windows.Forms.Label()
+        Me.chkbxRestricRes = New System.Windows.Forms.CheckedListBox()
+        Me.cmbPaisRes = New System.Windows.Forms.ComboBox()
+        Me.PaisesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Progra_1_I_Sem_2017DataSet3 = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet3()
         Me.cmbCiudadRes = New System.Windows.Forms.ComboBox()
         Me.CiudadesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Progra_1_I_Sem_2017DataSet2 = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet2()
@@ -52,7 +62,7 @@ Partial Class Form1
         Me.txtBusRes = New System.Windows.Forms.TextBox()
         Me.lblPaisRes = New System.Windows.Forms.Label()
         Me.lblTaxiRes = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtDescripRes = New System.Windows.Forms.TextBox()
         Me.lblDescripRes = New System.Windows.Forms.Label()
         Me.AdmPlat = New System.Windows.Forms.TabPage()
         Me.AdmColab = New System.Windows.Forms.TabPage()
@@ -61,39 +71,42 @@ Partial Class Form1
         Me.EstablecimientoTiposTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSetTableAdapters.EstablecimientoTiposTableAdapter()
         Me.RangoPreciosTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet1TableAdapters.RangoPreciosTableAdapter()
         Me.CiudadesTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet2TableAdapters.CiudadesTableAdapter()
-        Me.cmbPaisRes = New System.Windows.Forms.ComboBox()
-        Me.Progra_1_I_Sem_2017DataSet3 = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet3()
-        Me.PaisesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PaisesTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet3TableAdapters.PaisesTableAdapter()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.chkbxTipoCocinaRes = New System.Windows.Forms.CheckedListBox()
+        Me.Progra_1_I_Sem_2017DataSet4 = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet4()
+        Me.TiposCocinaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TiposCocinaTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet4TableAdapters.TiposCocinaTableAdapter()
+        CType(Me.dgvRestaurantes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.AdmRes.SuspendLayout()
+        CType(Me.PaisesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Progra_1_I_Sem_2017DataSet3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CiudadesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Progra_1_I_Sem_2017DataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RangoPreciosBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Progra_1_I_Sem_2017DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EstablecimientoTiposBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Progra_1_I_Sem_2017DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Progra_1_I_Sem_2017DataSet3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PaisesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Progra_1_I_Sem_2017DataSet4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TiposCocinaBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'DataGridView1
+        'dgvRestaurantes
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 284)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1008, 196)
-        Me.DataGridView1.TabIndex = 0
+        Me.dgvRestaurantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvRestaurantes.Location = New System.Drawing.Point(9, 191)
+        Me.dgvRestaurantes.Name = "dgvRestaurantes"
+        Me.dgvRestaurantes.Size = New System.Drawing.Size(927, 209)
+        Me.dgvRestaurantes.TabIndex = 0
         '
-        'Button1
+        'btnRefreshRes
         '
-        Me.Button1.Location = New System.Drawing.Point(735, 486)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Mostrar"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnRefreshRes.Location = New System.Drawing.Point(735, 406)
+        Me.btnRefreshRes.Name = "btnRefreshRes"
+        Me.btnRefreshRes.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefreshRes.TabIndex = 1
+        Me.btnRefreshRes.Text = "Refrescar"
+        Me.btnRefreshRes.UseVisualStyleBackColor = True
         '
         'TabControl1
         '
@@ -105,20 +118,28 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(3, 1)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1029, 543)
+        Me.TabControl1.Size = New System.Drawing.Size(956, 465)
         Me.TabControl1.TabIndex = 2
         '
         'AdmRes
         '
+        Me.AdmRes.Controls.Add(Me.chkbxTipoCocinaRes)
+        Me.AdmRes.Controls.Add(Me.btnModRes)
+        Me.AdmRes.Controls.Add(Me.btnAgregarRes)
+        Me.AdmRes.Controls.Add(Me.chkbxBuenoParaRes)
+        Me.AdmRes.Controls.Add(Me.lblBuenoParaRes)
+        Me.AdmRes.Controls.Add(Me.chkbxTipoComidaRes)
+        Me.AdmRes.Controls.Add(Me.lblTipoComidaRes)
+        Me.AdmRes.Controls.Add(Me.chkbxRestricRes)
         Me.AdmRes.Controls.Add(Me.cmbPaisRes)
         Me.AdmRes.Controls.Add(Me.cmbCiudadRes)
         Me.AdmRes.Controls.Add(Me.Label2)
         Me.AdmRes.Controls.Add(Me.Label1)
         Me.AdmRes.Controls.Add(Me.txtTaxRes)
         Me.AdmRes.Controls.Add(Me.cmbRangoRes)
-        Me.AdmRes.Controls.Add(Me.DataGridView1)
+        Me.AdmRes.Controls.Add(Me.dgvRestaurantes)
         Me.AdmRes.Controls.Add(Me.cmbTipoEstabRes)
-        Me.AdmRes.Controls.Add(Me.Button1)
+        Me.AdmRes.Controls.Add(Me.btnRefreshRes)
         Me.AdmRes.Controls.Add(Me.lblRangoRes)
         Me.AdmRes.Controls.Add(Me.txtNombreRes)
         Me.AdmRes.Controls.Add(Me.lblTipoEstabRes)
@@ -132,15 +153,99 @@ Partial Class Form1
         Me.AdmRes.Controls.Add(Me.txtBusRes)
         Me.AdmRes.Controls.Add(Me.lblPaisRes)
         Me.AdmRes.Controls.Add(Me.lblTaxiRes)
-        Me.AdmRes.Controls.Add(Me.TextBox1)
+        Me.AdmRes.Controls.Add(Me.txtDescripRes)
         Me.AdmRes.Controls.Add(Me.lblDescripRes)
         Me.AdmRes.Location = New System.Drawing.Point(4, 22)
         Me.AdmRes.Name = "AdmRes"
         Me.AdmRes.Padding = New System.Windows.Forms.Padding(3)
-        Me.AdmRes.Size = New System.Drawing.Size(1021, 517)
+        Me.AdmRes.Size = New System.Drawing.Size(948, 439)
         Me.AdmRes.TabIndex = 0
         Me.AdmRes.Text = "Adm Restaurante"
         Me.AdmRes.UseVisualStyleBackColor = True
+        '
+        'btnModRes
+        '
+        Me.btnModRes.Location = New System.Drawing.Point(834, 406)
+        Me.btnModRes.Name = "btnModRes"
+        Me.btnModRes.Size = New System.Drawing.Size(75, 23)
+        Me.btnModRes.TabIndex = 34
+        Me.btnModRes.Text = "Editar"
+        Me.btnModRes.UseVisualStyleBackColor = True
+        '
+        'btnAgregarRes
+        '
+        Me.btnAgregarRes.Location = New System.Drawing.Point(834, 162)
+        Me.btnAgregarRes.Name = "btnAgregarRes"
+        Me.btnAgregarRes.Size = New System.Drawing.Size(75, 23)
+        Me.btnAgregarRes.TabIndex = 33
+        Me.btnAgregarRes.Text = "Agregar"
+        Me.btnAgregarRes.UseVisualStyleBackColor = True
+        '
+        'chkbxBuenoParaRes
+        '
+        Me.chkbxBuenoParaRes.FormattingEnabled = True
+        Me.chkbxBuenoParaRes.Items.AddRange(New Object() {"reuniones de negocios", "grupos", "niños", "bar", "atmósfera romántica", "cenas de ocasiones especiales"})
+        Me.chkbxBuenoParaRes.Location = New System.Drawing.Point(606, 92)
+        Me.chkbxBuenoParaRes.Name = "chkbxBuenoParaRes"
+        Me.chkbxBuenoParaRes.Size = New System.Drawing.Size(120, 64)
+        Me.chkbxBuenoParaRes.TabIndex = 31
+        '
+        'lblBuenoParaRes
+        '
+        Me.lblBuenoParaRes.AutoSize = True
+        Me.lblBuenoParaRes.Location = New System.Drawing.Point(525, 92)
+        Me.lblBuenoParaRes.Name = "lblBuenoParaRes"
+        Me.lblBuenoParaRes.Size = New System.Drawing.Size(66, 13)
+        Me.lblBuenoParaRes.TabIndex = 30
+        Me.lblBuenoParaRes.Text = "Bueno Para:"
+        '
+        'chkbxTipoComidaRes
+        '
+        Me.chkbxTipoComidaRes.FormattingEnabled = True
+        Me.chkbxTipoComidaRes.Items.AddRange(New Object() {"Desayuno", "Brunch", "Almuerzo", "Cena"})
+        Me.chkbxTipoComidaRes.Location = New System.Drawing.Point(373, 92)
+        Me.chkbxTipoComidaRes.Name = "chkbxTipoComidaRes"
+        Me.chkbxTipoComidaRes.Size = New System.Drawing.Size(133, 64)
+        Me.chkbxTipoComidaRes.TabIndex = 29
+        '
+        'lblTipoComidaRes
+        '
+        Me.lblTipoComidaRes.AutoSize = True
+        Me.lblTipoComidaRes.Location = New System.Drawing.Point(289, 92)
+        Me.lblTipoComidaRes.Name = "lblTipoComidaRes"
+        Me.lblTipoComidaRes.Size = New System.Drawing.Size(69, 13)
+        Me.lblTipoComidaRes.TabIndex = 28
+        Me.lblTipoComidaRes.Text = "Tipo Comida:"
+        '
+        'chkbxRestricRes
+        '
+        Me.chkbxRestricRes.FormattingEnabled = True
+        Me.chkbxRestricRes.Items.AddRange(New Object() {"Vegetariano", "Vegano", "Sin Gluten"})
+        Me.chkbxRestricRes.Location = New System.Drawing.Point(149, 90)
+        Me.chkbxRestricRes.Name = "chkbxRestricRes"
+        Me.chkbxRestricRes.Size = New System.Drawing.Size(106, 64)
+        Me.chkbxRestricRes.TabIndex = 27
+        '
+        'cmbPaisRes
+        '
+        Me.cmbPaisRes.DataSource = Me.PaisesBindingSource
+        Me.cmbPaisRes.DisplayMember = "iso2"
+        Me.cmbPaisRes.FormattingEnabled = True
+        Me.cmbPaisRes.Location = New System.Drawing.Point(241, 51)
+        Me.cmbPaisRes.Name = "cmbPaisRes"
+        Me.cmbPaisRes.Size = New System.Drawing.Size(100, 21)
+        Me.cmbPaisRes.TabIndex = 26
+        Me.cmbPaisRes.ValueMember = "iso2"
+        '
+        'PaisesBindingSource
+        '
+        Me.PaisesBindingSource.DataMember = "Paises"
+        Me.PaisesBindingSource.DataSource = Me.Progra_1_I_Sem_2017DataSet3
+        '
+        'Progra_1_I_Sem_2017DataSet3
+        '
+        Me.Progra_1_I_Sem_2017DataSet3.DataSetName = "Progra_1_I_Sem_2017DataSet3"
+        Me.Progra_1_I_Sem_2017DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cmbCiudadRes
         '
@@ -175,7 +280,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(732, 54)
+        Me.Label1.Location = New System.Drawing.Point(732, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(67, 13)
         Me.Label1.TabIndex = 23
@@ -193,7 +298,7 @@ Partial Class Form1
         Me.cmbRangoRes.DataSource = Me.RangoPreciosBindingSource
         Me.cmbRangoRes.DisplayMember = "rango"
         Me.cmbRangoRes.FormattingEnabled = True
-        Me.cmbRangoRes.Location = New System.Drawing.Point(833, 17)
+        Me.cmbRangoRes.Location = New System.Drawing.Point(626, 162)
         Me.cmbRangoRes.Name = "cmbRangoRes"
         Me.cmbRangoRes.Size = New System.Drawing.Size(100, 21)
         Me.cmbRangoRes.TabIndex = 22
@@ -233,7 +338,7 @@ Partial Class Form1
         'lblRangoRes
         '
         Me.lblRangoRes.AutoSize = True
-        Me.lblRangoRes.Location = New System.Drawing.Point(732, 20)
+        Me.lblRangoRes.Location = New System.Drawing.Point(525, 165)
         Me.lblRangoRes.Name = "lblRangoRes"
         Me.lblRangoRes.Size = New System.Drawing.Size(95, 13)
         Me.lblRangoRes.TabIndex = 20
@@ -339,17 +444,17 @@ Partial Class Form1
         Me.lblTaxiRes.TabIndex = 12
         Me.lblTaxiRes.Text = "Por Taxi:"
         '
-        'TextBox1
+        'txtDescripRes
         '
-        Me.TextBox1.Location = New System.Drawing.Point(93, 120)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(413, 20)
-        Me.TextBox1.TabIndex = 11
+        Me.txtDescripRes.Location = New System.Drawing.Point(93, 162)
+        Me.txtDescripRes.Name = "txtDescripRes"
+        Me.txtDescripRes.Size = New System.Drawing.Size(413, 20)
+        Me.txtDescripRes.TabIndex = 11
         '
         'lblDescripRes
         '
         Me.lblDescripRes.AutoSize = True
-        Me.lblDescripRes.Location = New System.Drawing.Point(21, 123)
+        Me.lblDescripRes.Location = New System.Drawing.Point(21, 165)
         Me.lblDescripRes.Name = "lblDescripRes"
         Me.lblDescripRes.Size = New System.Drawing.Size(66, 13)
         Me.lblDescripRes.TabIndex = 10
@@ -360,7 +465,7 @@ Partial Class Form1
         Me.AdmPlat.Location = New System.Drawing.Point(4, 22)
         Me.AdmPlat.Name = "AdmPlat"
         Me.AdmPlat.Padding = New System.Windows.Forms.Padding(3)
-        Me.AdmPlat.Size = New System.Drawing.Size(1021, 517)
+        Me.AdmPlat.Size = New System.Drawing.Size(948, 439)
         Me.AdmPlat.TabIndex = 1
         Me.AdmPlat.Text = "Adm Platillos"
         Me.AdmPlat.UseVisualStyleBackColor = True
@@ -369,7 +474,7 @@ Partial Class Form1
         '
         Me.AdmColab.Location = New System.Drawing.Point(4, 22)
         Me.AdmColab.Name = "AdmColab"
-        Me.AdmColab.Size = New System.Drawing.Size(1021, 517)
+        Me.AdmColab.Size = New System.Drawing.Size(948, 439)
         Me.AdmColab.TabIndex = 2
         Me.AdmColab.Text = "Adm Colaboradores"
         Me.AdmColab.UseVisualStyleBackColor = True
@@ -378,7 +483,7 @@ Partial Class Form1
         '
         Me.AdmComent.Location = New System.Drawing.Point(4, 22)
         Me.AdmComent.Name = "AdmComent"
-        Me.AdmComent.Size = New System.Drawing.Size(1021, 517)
+        Me.AdmComent.Size = New System.Drawing.Size(948, 439)
         Me.AdmComent.TabIndex = 3
         Me.AdmComent.Text = "Adm Comentarios"
         Me.AdmComent.UseVisualStyleBackColor = True
@@ -387,7 +492,7 @@ Partial Class Form1
         '
         Me.Consultas.Location = New System.Drawing.Point(4, 22)
         Me.Consultas.Name = "Consultas"
-        Me.Consultas.Size = New System.Drawing.Size(1021, 517)
+        Me.Consultas.Size = New System.Drawing.Size(948, 439)
         Me.Consultas.TabIndex = 4
         Me.Consultas.Text = "Consultas"
         Me.Consultas.UseVisualStyleBackColor = True
@@ -404,57 +509,61 @@ Partial Class Form1
         '
         Me.CiudadesTableAdapter.ClearBeforeFill = True
         '
-        'cmbPaisRes
-        '
-        Me.cmbPaisRes.DataSource = Me.PaisesBindingSource
-        Me.cmbPaisRes.DisplayMember = "iso2"
-        Me.cmbPaisRes.FormattingEnabled = True
-        Me.cmbPaisRes.Location = New System.Drawing.Point(241, 51)
-        Me.cmbPaisRes.Name = "cmbPaisRes"
-        Me.cmbPaisRes.Size = New System.Drawing.Size(100, 21)
-        Me.cmbPaisRes.TabIndex = 26
-        Me.cmbPaisRes.ValueMember = "iso2"
-        '
-        'Progra_1_I_Sem_2017DataSet3
-        '
-        Me.Progra_1_I_Sem_2017DataSet3.DataSetName = "Progra_1_I_Sem_2017DataSet3"
-        Me.Progra_1_I_Sem_2017DataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'PaisesBindingSource
-        '
-        Me.PaisesBindingSource.DataMember = "Paises"
-        Me.PaisesBindingSource.DataSource = Me.Progra_1_I_Sem_2017DataSet3
-        '
         'PaisesTableAdapter
         '
         Me.PaisesTableAdapter.ClearBeforeFill = True
+        '
+        'chkbxTipoCocinaRes
+        '
+        Me.chkbxTipoCocinaRes.FormattingEnabled = True
+        Me.chkbxTipoCocinaRes.Items.AddRange(New Object() {"hola", "adios"})
+        Me.chkbxTipoCocinaRes.Location = New System.Drawing.Point(805, 17)
+        Me.chkbxTipoCocinaRes.Name = "chkbxTipoCocinaRes"
+        Me.chkbxTipoCocinaRes.Size = New System.Drawing.Size(131, 124)
+        Me.chkbxTipoCocinaRes.TabIndex = 35
+        '
+        'Progra_1_I_Sem_2017DataSet4
+        '
+        Me.Progra_1_I_Sem_2017DataSet4.DataSetName = "Progra_1_I_Sem_2017DataSet4"
+        Me.Progra_1_I_Sem_2017DataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'TiposCocinaBindingSource
+        '
+        Me.TiposCocinaBindingSource.DataMember = "TiposCocina"
+        Me.TiposCocinaBindingSource.DataSource = Me.Progra_1_I_Sem_2017DataSet4
+        '
+        'TiposCocinaTableAdapter
+        '
+        Me.TiposCocinaTableAdapter.ClearBeforeFill = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1033, 544)
+        Me.ClientSize = New System.Drawing.Size(963, 473)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Form1"
         Me.Text = "Form1"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvRestaurantes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.AdmRes.ResumeLayout(False)
         Me.AdmRes.PerformLayout()
+        CType(Me.PaisesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Progra_1_I_Sem_2017DataSet3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CiudadesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Progra_1_I_Sem_2017DataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RangoPreciosBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Progra_1_I_Sem_2017DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EstablecimientoTiposBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Progra_1_I_Sem_2017DataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Progra_1_I_Sem_2017DataSet3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PaisesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Progra_1_I_Sem_2017DataSet4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TiposCocinaBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents Button1 As Button
+    Friend WithEvents dgvRestaurantes As DataGridView
+    Friend WithEvents btnRefreshRes As Button
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents AdmRes As TabPage
     Friend WithEvents AdmPlat As TabPage
@@ -466,7 +575,7 @@ Partial Class Form1
     Friend WithEvents lblCiudadRes As Label
     Friend WithEvents lblDirRes As Label
     Friend WithEvents txtDirRes As TextBox
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtDescripRes As TextBox
     Friend WithEvents lblDescripRes As Label
     Friend WithEvents lblPaisRes As Label
     Friend WithEvents cmbRangoRes As ComboBox
@@ -495,4 +604,17 @@ Partial Class Form1
     Friend WithEvents Progra_1_I_Sem_2017DataSet3 As Progra_1_I_Sem_2017DataSet3
     Friend WithEvents PaisesBindingSource As BindingSource
     Friend WithEvents PaisesTableAdapter As Progra_1_I_Sem_2017DataSet3TableAdapters.PaisesTableAdapter
+    Friend WithEvents chkbxRestricRes As CheckedListBox
+    Friend WithEvents lblTipoComidaRes As Label
+    Friend WithEvents chkbxTipoComidaRes As CheckedListBox
+    Friend WithEvents lblBuenoParaRes As Label
+    Friend WithEvents chkbxBuenoParaRes As CheckedListBox
+    Friend WithEvents btnAgregarRes As Button
+    Friend WithEvents btnModRes As Button
+    Friend WithEvents TipoComidasBindingSource As BindingSource
+    Friend WithEvents TipoComidasBindingSource1 As BindingSource
+    Friend WithEvents chkbxTipoCocinaRes As CheckedListBox
+    Friend WithEvents Progra_1_I_Sem_2017DataSet4 As Progra_1_I_Sem_2017DataSet4
+    Friend WithEvents TiposCocinaBindingSource As BindingSource
+    Friend WithEvents TiposCocinaTableAdapter As Progra_1_I_Sem_2017DataSet4TableAdapters.TiposCocinaTableAdapter
 End Class

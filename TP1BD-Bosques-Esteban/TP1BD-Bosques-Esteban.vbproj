@@ -128,6 +128,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Progra_1_I_Sem_2017DataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Progra_1_I_Sem_2017DataSet4.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Progra_1_I_Sem_2017DataSet4.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -194,6 +199,17 @@
     </None>
     <None Include="Progra_1_I_Sem_2017DataSet3.xss">
       <DependentUpon>Progra_1_I_Sem_2017DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Progra_1_I_Sem_2017DataSet4.xsc">
+      <DependentUpon>Progra_1_I_Sem_2017DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Progra_1_I_Sem_2017DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Progra_1_I_Sem_2017DataSet4.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Progra_1_I_Sem_2017DataSet4.xss">
+      <DependentUpon>Progra_1_I_Sem_2017DataSet4.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
