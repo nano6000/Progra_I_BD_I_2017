@@ -5,11 +5,11 @@ Public Class Form1
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvRestaurantes.CellContentClick
 
     End Sub
-    Public Function listaGeneralPedidos()
+    Public Function refrescarRestaurantes()
         Dim encontro As Boolean
         Dim conex As New CpnivelDatos.conexion
         conex.Conectar()
-        Dim query As String = "select * from Restaurantes"
+        Dim query As String = "exec sp_viewRestaurant"
 
 
         Dim cmd As New SqlCommand(query, conex.MiConexion)
@@ -28,8 +28,35 @@ Public Class Form1
         Return encontro
     End Function
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRefreshRes.Click
-        listaGeneralPedidos()
+        refrescarRestaurantes()
     End Sub
+
+    Public Function cargarTiposCocina()
+        Dim encontro As Boolean
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+
+        Dim dt As New DataTable
+        Using conex.MiConexion
+            Dim query As String = "select * from TiposCocina"
+            Dim cmd As New SqlCommand(query, conex.MiConexion)
+            cmd.CommandType = CommandType.Text
+
+            Dim dat As New SqlDataAdapter()
+            dat.SelectCommand = cmd
+
+
+            'Dim loDataAdapter As New SqlDataAdapter(query, conex.MiConexion)
+            dat.Fill(dt)
+        End Using
+
+        If dt.Rows.Count > 0 Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+                chkbxTipoCocinaRes.Items.Add(CStr(dt.Rows(i).Item(0)), False)
+            Next
+        End If
+        Return encontro
+    End Function
 
     Private Sub GroupBox1_Enter(sender As Object, e As EventArgs)
 
@@ -67,7 +94,7 @@ Public Class Form1
         'TODO: This line of code loads data into the 'Progra_1_I_Sem_2017DataSet.EstablecimientoTipos' table. You can move, or remove it, as needed.
         Me.EstablecimientoTiposTableAdapter.Fill(Me.Progra_1_I_Sem_2017DataSet.EstablecimientoTipos)
 
-
+        cargarTiposCocina()
 
     End Sub
 
@@ -109,28 +136,27 @@ Public Class Form1
 
     End Sub
 
-    Private Sub btnAgregarRes_Click(sender As Object, e As EventArgs) Handles btnAgregarRes.Click
+    Public Function agregarRest()
         Dim conex As New CpnivelDatos.conexion
         conex.Conectar()
         Dim agregar As SqlCommand = New SqlCommand("exec sp_insertRestaurant @nombreRes, @direcRes, @ciudadRes, @paisRes, @naturRes, 
                                             @trenRes, @busRes, @taxiRes, @estabRes, @precioRes", conex.MiConexion)
-
 
         Dim fila As DataGridViewRow = New DataGridViewRow()
 
         Try
 
             agregar.Parameters.Clear()
-            agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text)) ' Convert.ToString(fila.Cells("idproducto").Value))
-            agregar.Parameters.AddWithValue("@direcRes", Convert.ToString(txtDirRes.Text)) 'Convert.ToString(fila.Cells("prove").Value))
-            agregar.Parameters.AddWithValue("@ciudadRes", Convert.ToInt32(3936456)) 'Convert.ToString(fila.Cells("descripProd").Value))
-            agregar.Parameters.AddWithValue("@paisRes", cmbPaisRes.Text) 'Convert.ToString(cmbPaisRes.SelectedItem.ToString)) 'Convert.ToString(fila.Cells("catego").Value))
-            agregar.Parameters.AddWithValue("@naturRes", Convert.ToString(txtDescripRes.Text)) 'Convert.ToString(fila.Cells("preciouni").Value))
-            agregar.Parameters.AddWithValue("@trenRes", Convert.ToString(txtTrenRes.Text)) 'Convert.ToString(fila.Cells("cantiE").Value))
-            agregar.Parameters.AddWithValue("@busRes", Convert.ToString(txtBusRes.Text)) 'Convert.ToString(fila.Cells("esta").Value))
-            agregar.Parameters.AddWithValue("@taxiRes", Convert.ToString(txtTaxRes.Text)) 'Convert.ToString(fila.Cells("esta").Value))
-            agregar.Parameters.AddWithValue("@estabRes", cmbTipoEstabRes.Text) 'Convert.ToString(fila.Cells("esta").Value))
-            agregar.Parameters.AddWithValue("@precioRes", cmbRangoRes.Text) 'Convert.ToString(fila.Cells("esta").Value))
+            agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text))
+            agregar.Parameters.AddWithValue("@direcRes", Convert.ToString(txtDirRes.Text))
+            agregar.Parameters.AddWithValue("@ciudadRes", cmbCiudadRes.Text)
+            agregar.Parameters.AddWithValue("@paisRes", cmbPaisRes.Text)
+            agregar.Parameters.AddWithValue("@naturRes", Convert.ToString(txtDescripRes.Text))
+            agregar.Parameters.AddWithValue("@trenRes", Convert.ToString(txtTrenRes.Text))
+            agregar.Parameters.AddWithValue("@busRes", Convert.ToString(txtBusRes.Text))
+            agregar.Parameters.AddWithValue("@taxiRes", Convert.ToString(txtTaxRes.Text))
+            agregar.Parameters.AddWithValue("@estabRes", cmbTipoEstabRes.Text)
+            agregar.Parameters.AddWithValue("@precioRes", cmbRangoRes.Text)
 
             agregar.ExecuteNonQuery()
 
@@ -141,6 +167,165 @@ Public Class Form1
             conex.cerrar()
 
             '' cargaBoxProductosActivos()
+        End Try
+        Return True
+    End Function
+
+    Public Function agregarTipoCocina()
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+        Dim agregar As SqlCommand = New SqlCommand("exec sp_addtipoCocina @nombreRes, @tipoCocina", conex.MiConexion)
+
+        Dim fila As DataGridViewRow = New DataGridViewRow()
+
+        For Each li In chkbxTipoCocinaRes.CheckedItems
+            Try
+                agregar.Parameters.Clear()
+                agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text))
+                agregar.Parameters.AddWithValue("@tipoCocina", li.ToString())
+                agregar.ExecuteNonQuery()
+
+            Catch ex As Exception
+                MsgBox("Error al tratar de ingresar los datos" & vbCrLf & ex.Message)
+
+                conex.cerrar()
+            End Try
+        Next
+        Return True
+    End Function
+
+    Public Function agregarRestriccDiet()
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+        Dim agregar As SqlCommand = New SqlCommand("exec sp_addRestricRes @nombreRes, @restric", conex.MiConexion)
+
+        Dim fila As DataGridViewRow = New DataGridViewRow()
+
+        For Each li In chkbxRestricRes.CheckedItems
+            Try
+                agregar.Parameters.Clear()
+                agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text))
+                agregar.Parameters.AddWithValue("@restric", li.ToString())
+                agregar.ExecuteNonQuery()
+
+            Catch ex As Exception
+                MsgBox("Error al tratar de ingresar los datos" & vbCrLf & ex.Message)
+
+                conex.cerrar()
+            End Try
+        Next
+        Return True
+    End Function
+
+    Public Function agregarTipoComida()
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+        Dim agregar As SqlCommand = New SqlCommand("exec sp_addTipoComidaRes @nombreRes, @tipo", conex.MiConexion)
+
+        Dim fila As DataGridViewRow = New DataGridViewRow()
+
+        For Each li In chkbxTipoComidaRes.CheckedItems
+            Try
+                agregar.Parameters.Clear()
+                agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text))
+                agregar.Parameters.AddWithValue("@tipo", li.ToString())
+                agregar.ExecuteNonQuery()
+
+            Catch ex As Exception
+                MsgBox("Error al tratar de ingresar los datos" & vbCrLf & ex.Message)
+
+                conex.cerrar()
+            End Try
+        Next
+        Return True
+    End Function
+
+    Public Function agregarBuenoPara()
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+        Dim agregar As SqlCommand = New SqlCommand("exec sp_addBuenoPara @nombreRes, @bueno", conex.MiConexion)
+
+        Dim fila As DataGridViewRow = New DataGridViewRow()
+
+        For Each li In chkbxBuenoParaRes.CheckedItems
+            Try
+                agregar.Parameters.Clear()
+                agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text))
+                agregar.Parameters.AddWithValue("@bueno", li.ToString())
+                agregar.ExecuteNonQuery()
+
+            Catch ex As Exception
+                MsgBox("Error al tratar de ingresar los datos" & vbCrLf & ex.Message)
+
+                conex.cerrar()
+            End Try
+        Next
+        Return True
+    End Function
+
+    Private Sub btnAgregarRes_Click(sender As Object, e As EventArgs) Handles btnAgregarRes.Click
+        agregarRest()
+        agregarTipoCocina()
+        agregarBuenoPara()
+        agregarRestriccDiet()
+        agregarTipoComida()
+    End Sub
+
+    Private Sub btnModRes_Click(sender As Object, e As EventArgs) Handles btnModRes.Click
+        txtNombreRes.Text = dgvRestaurantes.SelectedRows.Item(0).Cells(0).Value
+        txtDirRes.Text = dgvRestaurantes.SelectedRows.Item(0).Cells(1).Value
+        txtDescripRes.Text = dgvRestaurantes.SelectedRows.Item(0).Cells(4).Value
+        txtTrenRes.Text = dgvRestaurantes.SelectedRows.Item(0).Cells(5).Value
+        txtBusRes.Text = dgvRestaurantes.SelectedRows.Item(0).Cells(6).Value
+        txtTaxRes.Text = dgvRestaurantes.SelectedRows.Item(0).Cells(7).Value
+
+    End Sub
+
+    Public Function refrescarPlatillos()
+        Dim encontro As Boolean
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+        Dim query As String = " exec sp_viewPlatillos"
+
+
+        Dim cmd As New SqlCommand(query, conex.MiConexion)
+        cmd.CommandType = CommandType.Text
+
+        ' Dim dat As New SqlDataAdapter(cmd)
+        Dim dt As New DataTable
+
+        Using conex.MiConexion
+
+            Dim loDataAdapter As New SqlDataAdapter(query, conex.MiConexion)
+            loDataAdapter.Fill(dt)
+            Me.dgvRestaurantes.DataSource = dt
+        End Using
+
+        Return encontro
+    End Function
+
+    Private Sub btnRefrescarPlat_Click(sender As Object, e As EventArgs) Handles btnRefrescarPlat.Click
+        refrescarPlatillos()
+    End Sub
+
+    Private Sub btnAgregarPlat_Click(sender As Object, e As EventArgs) Handles btnAgregarPlat.Click
+        Dim conex As New CpnivelDatos.conexion
+        conex.Conectar()
+        Dim agregar As SqlCommand = New SqlCommand("exec sp_insertPlat @nombrePlat, @nombreRes, @descrip", conex.MiConexion)
+
+        Dim fila As DataGridViewRow = New DataGridViewRow()
+
+        Try
+            agregar.Parameters.Clear()
+            agregar.Parameters.AddWithValue("@nombrePlat", Convert.ToString(txtNombrePlat.Text))
+            agregar.Parameters.AddWithValue("@nombreRes", Convert.ToString(txtNombreRes.Text))
+            agregar.Parameters.AddWithValue("@descrip", Convert.ToString(txtDescripPlat.Text))
+            agregar.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MsgBox("Error al tratar de ingresar los datos" & vbCrLf & ex.Message)
+
+            conex.cerrar()
         End Try
     End Sub
 End Class

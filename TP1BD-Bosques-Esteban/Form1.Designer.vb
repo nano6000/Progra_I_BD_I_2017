@@ -27,6 +27,7 @@ Partial Class Form1
         Me.btnRefreshRes = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.AdmRes = New System.Windows.Forms.TabPage()
+        Me.chkbxTipoCocinaRes = New System.Windows.Forms.CheckedListBox()
         Me.btnModRes = New System.Windows.Forms.Button()
         Me.btnAgregarRes = New System.Windows.Forms.Button()
         Me.chkbxBuenoParaRes = New System.Windows.Forms.CheckedListBox()
@@ -72,10 +73,19 @@ Partial Class Form1
         Me.RangoPreciosTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet1TableAdapters.RangoPreciosTableAdapter()
         Me.CiudadesTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet2TableAdapters.CiudadesTableAdapter()
         Me.PaisesTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet3TableAdapters.PaisesTableAdapter()
-        Me.chkbxTipoCocinaRes = New System.Windows.Forms.CheckedListBox()
         Me.Progra_1_I_Sem_2017DataSet4 = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet4()
         Me.TiposCocinaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TiposCocinaTableAdapter = New TP1BD_Bosques_Esteban.Progra_1_I_Sem_2017DataSet4TableAdapters.TiposCocinaTableAdapter()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtRestPlat = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtNombrePlat = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtDescripPlat = New System.Windows.Forms.TextBox()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.btnAgregarPlat = New System.Windows.Forms.Button()
+        Me.btnBorrarPlat = New System.Windows.Forms.Button()
+        Me.btnRefrescarPlat = New System.Windows.Forms.Button()
         CType(Me.dgvRestaurantes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.AdmRes.SuspendLayout()
@@ -87,15 +97,23 @@ Partial Class Form1
         CType(Me.Progra_1_I_Sem_2017DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EstablecimientoTiposBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Progra_1_I_Sem_2017DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.AdmPlat.SuspendLayout()
         CType(Me.Progra_1_I_Sem_2017DataSet4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TiposCocinaBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvRestaurantes
         '
+        Me.dgvRestaurantes.AllowUserToAddRows = False
+        Me.dgvRestaurantes.AllowUserToDeleteRows = False
+        Me.dgvRestaurantes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.dgvRestaurantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvRestaurantes.Location = New System.Drawing.Point(9, 191)
+        Me.dgvRestaurantes.MultiSelect = False
         Me.dgvRestaurantes.Name = "dgvRestaurantes"
+        Me.dgvRestaurantes.ReadOnly = True
+        Me.dgvRestaurantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvRestaurantes.Size = New System.Drawing.Size(927, 209)
         Me.dgvRestaurantes.TabIndex = 0
         '
@@ -162,6 +180,14 @@ Partial Class Form1
         Me.AdmRes.TabIndex = 0
         Me.AdmRes.Text = "Adm Restaurante"
         Me.AdmRes.UseVisualStyleBackColor = True
+        '
+        'chkbxTipoCocinaRes
+        '
+        Me.chkbxTipoCocinaRes.FormattingEnabled = True
+        Me.chkbxTipoCocinaRes.Location = New System.Drawing.Point(805, 17)
+        Me.chkbxTipoCocinaRes.Name = "chkbxTipoCocinaRes"
+        Me.chkbxTipoCocinaRes.Size = New System.Drawing.Size(131, 124)
+        Me.chkbxTipoCocinaRes.TabIndex = 35
         '
         'btnModRes
         '
@@ -462,6 +488,16 @@ Partial Class Form1
         '
         'AdmPlat
         '
+        Me.AdmPlat.Controls.Add(Me.btnRefrescarPlat)
+        Me.AdmPlat.Controls.Add(Me.btnBorrarPlat)
+        Me.AdmPlat.Controls.Add(Me.btnAgregarPlat)
+        Me.AdmPlat.Controls.Add(Me.DataGridView1)
+        Me.AdmPlat.Controls.Add(Me.txtDescripPlat)
+        Me.AdmPlat.Controls.Add(Me.Label5)
+        Me.AdmPlat.Controls.Add(Me.txtNombrePlat)
+        Me.AdmPlat.Controls.Add(Me.Label4)
+        Me.AdmPlat.Controls.Add(Me.txtRestPlat)
+        Me.AdmPlat.Controls.Add(Me.Label3)
         Me.AdmPlat.Location = New System.Drawing.Point(4, 22)
         Me.AdmPlat.Name = "AdmPlat"
         Me.AdmPlat.Padding = New System.Windows.Forms.Padding(3)
@@ -513,15 +549,6 @@ Partial Class Form1
         '
         Me.PaisesTableAdapter.ClearBeforeFill = True
         '
-        'chkbxTipoCocinaRes
-        '
-        Me.chkbxTipoCocinaRes.FormattingEnabled = True
-        Me.chkbxTipoCocinaRes.Items.AddRange(New Object() {"hola", "adios"})
-        Me.chkbxTipoCocinaRes.Location = New System.Drawing.Point(805, 17)
-        Me.chkbxTipoCocinaRes.Name = "chkbxTipoCocinaRes"
-        Me.chkbxTipoCocinaRes.Size = New System.Drawing.Size(131, 124)
-        Me.chkbxTipoCocinaRes.TabIndex = 35
-        '
         'Progra_1_I_Sem_2017DataSet4
         '
         Me.Progra_1_I_Sem_2017DataSet4.DataSetName = "Progra_1_I_Sem_2017DataSet4"
@@ -535,6 +562,92 @@ Partial Class Form1
         'TiposCocinaTableAdapter
         '
         Me.TiposCocinaTableAdapter.ClearBeforeFill = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(21, 28)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(68, 13)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "Restaurante:"
+        '
+        'txtRestPlat
+        '
+        Me.txtRestPlat.Location = New System.Drawing.Point(95, 25)
+        Me.txtRestPlat.Name = "txtRestPlat"
+        Me.txtRestPlat.Size = New System.Drawing.Size(100, 20)
+        Me.txtRestPlat.TabIndex = 1
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(217, 28)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(40, 13)
+        Me.Label4.TabIndex = 2
+        Me.Label4.Text = "Platillo:"
+        '
+        'txtNombrePlat
+        '
+        Me.txtNombrePlat.Location = New System.Drawing.Point(263, 25)
+        Me.txtNombrePlat.Name = "txtNombrePlat"
+        Me.txtNombrePlat.Size = New System.Drawing.Size(100, 20)
+        Me.txtNombrePlat.TabIndex = 3
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(386, 28)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(66, 13)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Descripcion:"
+        '
+        'txtDescripPlat
+        '
+        Me.txtDescripPlat.Location = New System.Drawing.Point(458, 25)
+        Me.txtDescripPlat.Name = "txtDescripPlat"
+        Me.txtDescripPlat.Size = New System.Drawing.Size(459, 20)
+        Me.txtDescripPlat.TabIndex = 5
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(24, 74)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.Size = New System.Drawing.Size(893, 283)
+        Me.DataGridView1.TabIndex = 6
+        '
+        'btnAgregarPlat
+        '
+        Me.btnAgregarPlat.Location = New System.Drawing.Point(750, 392)
+        Me.btnAgregarPlat.Name = "btnAgregarPlat"
+        Me.btnAgregarPlat.Size = New System.Drawing.Size(75, 23)
+        Me.btnAgregarPlat.TabIndex = 7
+        Me.btnAgregarPlat.Text = "Agregar"
+        Me.btnAgregarPlat.UseVisualStyleBackColor = True
+        '
+        'btnBorrarPlat
+        '
+        Me.btnBorrarPlat.Location = New System.Drawing.Point(842, 392)
+        Me.btnBorrarPlat.Name = "btnBorrarPlat"
+        Me.btnBorrarPlat.Size = New System.Drawing.Size(75, 23)
+        Me.btnBorrarPlat.TabIndex = 8
+        Me.btnBorrarPlat.Text = "Borrar"
+        Me.btnBorrarPlat.UseVisualStyleBackColor = True
+        '
+        'btnRefrescarPlat
+        '
+        Me.btnRefrescarPlat.Location = New System.Drawing.Point(660, 392)
+        Me.btnRefrescarPlat.Name = "btnRefrescarPlat"
+        Me.btnRefrescarPlat.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefrescarPlat.TabIndex = 9
+        Me.btnRefrescarPlat.Text = "Refrescar"
+        Me.btnRefrescarPlat.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -556,8 +669,11 @@ Partial Class Form1
         CType(Me.Progra_1_I_Sem_2017DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EstablecimientoTiposBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Progra_1_I_Sem_2017DataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.AdmPlat.ResumeLayout(False)
+        Me.AdmPlat.PerformLayout()
         CType(Me.Progra_1_I_Sem_2017DataSet4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TiposCocinaBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -617,4 +733,14 @@ Partial Class Form1
     Friend WithEvents Progra_1_I_Sem_2017DataSet4 As Progra_1_I_Sem_2017DataSet4
     Friend WithEvents TiposCocinaBindingSource As BindingSource
     Friend WithEvents TiposCocinaTableAdapter As Progra_1_I_Sem_2017DataSet4TableAdapters.TiposCocinaTableAdapter
+    Friend WithEvents btnRefrescarPlat As Button
+    Friend WithEvents btnBorrarPlat As Button
+    Friend WithEvents btnAgregarPlat As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents txtDescripPlat As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtNombrePlat As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtRestPlat As TextBox
+    Friend WithEvents Label3 As Label
 End Class
